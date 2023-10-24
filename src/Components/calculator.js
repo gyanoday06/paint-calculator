@@ -55,7 +55,10 @@ export default function Calculator() {
 
   return (
     <div className="container">
-      <h1>Paint Calculator</h1>
+      <div className='d-flex align-items-center mt-5'>
+      <i class="fa-solid fa-paint-roller fs-4 me-2"></i>
+      <h2 className='caption'>Paint Calculator</h2>
+      </div>
       <form>
         <div className="mb-3">
           <label>Unit</label>
