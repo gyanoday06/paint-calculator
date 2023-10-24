@@ -10,19 +10,17 @@ export default function Calculator() {
   const [windowHeight, setWindowHeight] = useState('');
   const [numWindows, setNumWindows] = useState('');
   const [paintAreaSqft, setPaintAreaSqft] = useState(0);
-  const [paintAreaSqM, setPaintAreaSqM] = useState(0);
+  const [paintAreaSqm, setPaintAreaSqm] = useState(0);
 
   const calculatePaintArea = () => {
     const carpetAreaValue = parseFloat(carpetArea);
     const doorArea = parseFloat(doorWidth) * parseFloat(doorHeight) * parseFloat(numDoors);
     const windowArea = parseFloat(windowWidth) * parseFloat(windowHeight) * parseFloat(numWindows);
 
-    const paintArea = carpetAreaValue * 3.5;
-    const paintAreaSqM = carpetAreaValue * 3.5;
+    let paintAreaValue = carpetAreaValue * 3.5;
 
-    setPaintAreaSqft(paintArea - doorArea - windowArea);
-    
-    setPaintAreaSqM((paintAreaSqM - doorArea - windowArea) / 10.7639);
+    unit==='sqft' ? setPaintAreaSqft(paintAreaValue - doorArea - windowArea) : setPaintAreaSqft((paintAreaValue - doorArea - windowArea)*10.764);
+    unit==='sqft' ? setPaintAreaSqm((paintAreaValue - doorArea - windowArea) / 10.764) : setPaintAreaSqm((paintAreaValue - doorArea - windowArea));
   };
 
   const calculatePaint = () => {
@@ -50,14 +48,13 @@ export default function Calculator() {
     setWindowHeight('');
     setNumWindows('');
     setPaintAreaSqft(0);
-    setPaintAreaSqM(0);
   };
 
   return (
     <div className="container">
       <div className='d-flex align-items-center mt-5'>
-      <i class="fa-solid fa-paint-roller fs-4 me-2"></i>
-      <h2 className='caption'>Paint Calculator</h2>
+        <i className="fa-solid fa-paint-roller fs-4 me-2"></i>
+        <h2 className='caption'>Paint Calculator</h2>
       </div>
       <form>
         <div className="mb-3">
@@ -148,7 +145,7 @@ export default function Calculator() {
       </form>
       <div className="mt-4">
         <h2>Results</h2>
-        <p>Actual Paint Area: {unit === 'sqft' ? paintAreaSqft.toFixed(2) : paintAreaSqM.toFixed(2)} {unit === 'sqft' ? 'Sq. Ft.' : 'Sq. Meter'}</p>
+        <p>Actual Paint Area: {unit === 'sqft' ? paintAreaSqft.toFixed(2) : paintAreaSqm.toFixed(2)} {unit === 'sqft' ? 'Sq. Ft.' : 'Sq. Meter'}</p>
         <p>Paint: {calculatePaint()}</p>
         <p>Primer: {calculatePrimer()}</p>
         <p>Putty: {calculatePutty()}</p>
