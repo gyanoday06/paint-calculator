@@ -9,6 +9,20 @@
 
 .caption {
   color: #666;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 500;
 }
+
+.boxsha{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 1rem;
+}
+
+.explanation--container{
+  grid-template-columns: auto auto auto;
+}
+
+.explanation--container p{
+  font-style: italic;
+}
+
